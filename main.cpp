@@ -21,7 +21,7 @@ int main() {
 
     Poco::AutoPtr<Poco::SimpleFileChannel> pFile(new Poco::SimpleFileChannel);
     pFile->setProperty("path", "settings_loader.log");
-    pFile->setProperty("rotation", "1 K");
+    pFile->setProperty("rotation", "1 M");
     Poco::AutoPtr<Poco::FormattingChannel> pFF(new Poco::FormattingChannel(pPF, pFile));
 
     Poco::AutoPtr<Poco::SplitterChannel> pSplitter(new Poco::SplitterChannel);
