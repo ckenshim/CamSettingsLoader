@@ -6,6 +6,7 @@
 #include <Poco/FormattingChannel.h>
 #include <Poco/PatternFormatter.h>
 #include <Poco/File.h>
+#include <Poco/Path.h>
 #include <fstream>
 using namespace std;
 
@@ -53,6 +54,11 @@ int main() {
 
         int counter = 0;
 
+        std::string str_dir = "settings";
+        Poco::File settings_path(str_dir);
+        settings_path.createDirectories();
+
+
         // output file stream
         std::ofstream settings_file;
         for (std::string line; std::getline(filein, line);) {
@@ -60,7 +66,7 @@ int main() {
             bool is_ok = client.doRequest(line);
 
             if (is_ok) {
-                settings_file.open(std::to_string(counter) + ".txt");
+                settings_file.open(str_dir + "/" + std::to_string(counter) + ".txt");
                 settings_file << client.getResponse();
                 settings_file.close();
             }
